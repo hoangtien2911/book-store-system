@@ -7,4 +7,4 @@
 * README.md - this file itself - using Markdown language
 
 
-### © 2021 hoàng tiến| fb/htmsyunh/
+### © 2021 hoàng tiến | fb/htmsyunh/
