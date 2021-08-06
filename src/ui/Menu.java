@@ -33,9 +33,11 @@ public class Menu {
             System.out.println(x);
         }
     }
+
     public int getChoice() {
-        int choice;
-        choice = MyToys.getAnInteger("Your choice(1...5): ", "Please choice a number 1...5");
-        return choice;
+        int maxOption = optionList.size();
+        String inputMsg = "Your choice 1..." + maxOption + ": ";
+        String errorMsg = "Please choice 1..." + maxOption + ".";
+        return MyToys.getAnInteger(inputMsg, errorMsg, 1, maxOption);
     }
 }
