@@ -49,9 +49,6 @@ public class BookStoreSystem {
                 case 6:
                     System.out.println("Bye bye, see you next time.");
                     break;
-                default:
-                    System.out.println("Please choice 1...5");
-                    break;
             }
             
         } while (choice != 6);
