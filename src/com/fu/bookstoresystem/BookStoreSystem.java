@@ -11,9 +11,10 @@ public class BookStoreSystem {
         Menu menu = new Menu("Book Shop - ©2021 Copyright by <SE160239 - Phạm Hoàng Tiến>");
         menu.addNewOption("1. Add a book to the list");
         menu.addNewOption("2. Search a book by ID");
-        menu.addNewOption("3. Update a specific book (price by discount) based on ID");
+        menu.addNewOption("3. Update a book (price by discount) by ID");
         menu.addNewOption("4. Print the book list in the descending order of Price");
-        menu.addNewOption("5. Quit");
+        menu.addNewOption("5. Remove a book by ID.");
+        menu.addNewOption("6. Quit");
         Cabinet cage = new Cabinet();
         int choice;
         do {
@@ -41,6 +42,11 @@ public class BookStoreSystem {
                     cage.printTheBookList();
                     break;
                 case 5:
+                    System.out.println("You are required to input "
+                            + "a book id to remove.");
+                    cage.removeABook();
+                    break;
+                case 6:
                     System.out.println("Bye bye, see you next time.");
                     break;
                 default:
@@ -48,7 +54,7 @@ public class BookStoreSystem {
                     break;
             }
             
-        } while (choice != 5);
+        } while (choice != 6);
         
     }
     

@@ -10,31 +10,52 @@ public class Cabinet {
     public void addANewBook() {
         String author, name, publishingCompany, id;
         int yop; //year of publication
+        int pos; //lưu vị trí tìm thấy id
         double price;
         author = MyToys.getAString("Input name of author: ",
-                                        "Please try again!!! Input a string.");
-        name = MyToys.getAString("Input name of book: ", 
-                                        "Please try again!!! Input a string.");
+                "Please try again!!! Input a string.");
+
+        name = MyToys.getAString("Input name of book: ",
+                "Please try again!!! Input a string.");
+
         publishingCompany = MyToys.getAString("Input name of publishing company: ",
-                                        "Please try again!!! Input a string.");
-        id = MyToys.getAString("Input id of book XXOOOOOO (X: Word, O: Number): ",
-                                        "Please try again!!! Input XXOOOOOO (X: Word, O: Number).");
-        yop = MyToys.getAnInteger("Input year of publication: ",
-                                        "Please try again!!! Input an integer number.");
-        price = MyToys.getADouble("Input price of book: ",
-                                        "Please try again!!! Input a number.");
+                "Please try again!!! Input a string.");
+
+        do {
+            id = MyToys.getID("Input id of book BOOOO (O stands for a digit): ",
+                    "Please try again!!! Input BOOOO (O stands for a digit).", "^[B|b]\\d{4}$");
+            pos = searchABookByIDForInput(id);
+            if (pos >= 0)
+                System.out.println("The book id already exists. "
+                        + "Input another one!");
+        } while (pos != -1);
+
+        yop = MyToys.getAnInteger("Input year of publication(1990 - 2021): ",
+                "Please try again!!! Input a number(1990-2021).", 1990, 2021);
+
+        price = MyToys.getADouble("Input price of book(USD): ",
+                "Please try again!!! Input a number.", 1, 1000);
+
         bookList.add(new Book(author, name, publishingCompany, yop, id, price));
         System.out.println("Add a new book successfully!!!!");
     }
 
-    public Book searchABookByID(String id) {
-        if (bookList.isEmpty()) {
-            return null;
-        }
+    public int searchABookByIDForInput(String id) {
+        if (bookList.isEmpty()) 
+            return -1;
         for (int i = 0; i < bookList.size(); i++) {
-            if (bookList.get(i).getId().equalsIgnoreCase(id)) {
+            if (bookList.get(i).getId().equalsIgnoreCase(id))
+                return i;
+        }
+        return -1;
+    }
+
+    public Book searchABookByID(String id) {
+        if (bookList.isEmpty()) 
+            return null;
+        for (int i = 0; i < bookList.size(); i++) {
+            if (bookList.get(i).getId().equalsIgnoreCase(id)) 
                 return bookList.get(i);
-            }
         }
         return null;
     }
@@ -42,7 +63,7 @@ public class Cabinet {
     public void searchABookByID() {
         String id;
         id = MyToys.getAString("Input ID you want to search: ",
-                                    "Book id is required! Please input XXOOOOOO (X: Word, O: Number).");
+                "Book id is required! Please input BOOOO (O stands for a digit).");
         Book xxx = searchABookByID(id);
         if (xxx == null) {
             System.out.println("Book not found!!!");
@@ -55,8 +76,8 @@ public class Cabinet {
     public void updateABookByDiscountPrice() {
         double discount, price;
         String id;
-        id = MyToys.getAString("Input id your book you want to update by discount price: ", 
-                                    "Book id is required! Please input XXOOOOOO (X: Word, O: Number).");
+        id = MyToys.getAString("Input id your book you want to update by discount price: ",
+                "Book id is required! Please input BOOOO (O stands for a digit).");
         Book xxx = searchABookByID(id);
         if (xxx == null) {
             System.out.println("Book not found!!!");
@@ -66,7 +87,7 @@ public class Cabinet {
             xxx.showBookInformation();
         }
         discount = MyToys.getADouble("Input your discount of book: ",
-                                            "Please try again!!! Input a number.");
+                "Please try again!!! Input a number.");
         price = xxx.getPrice() * discount / 100;
         xxx.setPrice(price);
         System.out.println("Price of book after update by discount price: ");
@@ -95,5 +116,28 @@ public class Cabinet {
         for (Book x : bookList) {
             x.showBookInformation();
         }
+    }
+
+    public void removeABook() {
+        String id;
+        String answer;
+        String yes = "YES", no = "NO";
+        id = MyToys.getAString("Input id your book you want to remove: ",
+                "Book id is required! Please input BOOOO (O stands for a digit).");
+        int xxx = searchABookByIDForInput(id);
+        if (xxx == -1) {
+            System.out.println("Book not found!!!");
+            return;
+        } else {
+            System.out.println("Book found before remove!!! There is: ");
+            bookList.get(xxx).showBookInformation();
+        }
+        answer = MyToys.getAString("Are you sure to remove? ", "Please input Yes or No!!!");
+        if (answer.equalsIgnoreCase(yes)){
+            bookList.remove(xxx);
+            System.out.println("Book has been removed from the list");
+        }
+        if (answer.equalsIgnoreCase(no))
+            System.out.println("Books will not be deleted!");
     }
 }
