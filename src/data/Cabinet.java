@@ -62,8 +62,8 @@ public class Cabinet {
 
     public void searchABookByID() {
         String id;
-        id = MyToys.getAString("Input ID you want to search: ",
-                "Book id is required! Please input BOOOO (O stands for a digit).");
+        id = MyToys.getID("Input ID you want to search: ",
+                    "Please try again!!! Input BOOOO (O stands for a digit).", "^[B|b]\\d{4}$");
         Book xxx = searchABookByID(id);
         if (xxx == null) {
             System.out.println("Book not found!!!");
@@ -76,8 +76,8 @@ public class Cabinet {
     public void updateABookByDiscountPrice() {
         double discount, price;
         String id;
-        id = MyToys.getAString("Input id your book you want to update by discount price: ",
-                "Book id is required! Please input BOOOO (O stands for a digit).");
+        id = MyToys.getID("Input id your book you want to update by discount price: ",
+                    "Please try again!!! Input BOOOO (O stands for a digit).", "^[B|b]\\d{4}$");
         Book xxx = searchABookByID(id);
         if (xxx == null) {
             System.out.println("Book not found!!!");
@@ -122,8 +122,8 @@ public class Cabinet {
         String id;
         String answer;
         String yes = "YES", no = "NO";
-        id = MyToys.getAString("Input id your book you want to remove: ",
-                "Book id is required! Please input BOOOO (O stands for a digit).");
+        id = MyToys.getID("Input id your book you want to remove: ",
+                    "Please try again!!! Input BOOOO (O stands for a digit).", "^[B|b]\\d{4}$");
         int xxx = searchABookByIDForInput(id);
         if (xxx == -1) {
             System.out.println("Book not found!!!");
@@ -138,6 +138,6 @@ public class Cabinet {
             System.out.println("Book has been removed from the list");
         }
         if (answer.equalsIgnoreCase(no))
-            System.out.println("Books will not be deleted!");
+            System.out.println("Book will not be deleted!");
     }
 }

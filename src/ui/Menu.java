@@ -2,12 +2,10 @@ package ui;
 
 import data.MyToys;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Menu {
 
     private String menuTitle;
-    private Scanner sc = new Scanner(System.in);
     private ArrayList<String> optionList = new ArrayList();
 
     public Menu(String menuTitle) {
@@ -25,9 +23,7 @@ public class Menu {
         }
         System.out.println("\n----------------------");
         System.out.println("Welcome to " + menuTitle);
-        System.out.print("Login name: ");
-        String customer;
-        customer = sc.nextLine().toUpperCase();
+        String customer = MyToys.getAString("Login name: ", "Please input your name!!!");
         System.out.println("Hi " + customer);
         for (String x : optionList) {
             System.out.println(x);

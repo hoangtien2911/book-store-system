@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package data;
 
-/**
- *
- * @author Hp
- */
 public class Book {
     private String author;
     private String name;
@@ -76,11 +68,11 @@ public class Book {
 
     @Override
     public String toString() {
-        return String.format("|%-30s|%-30s|%-30s|%4d|%-8s|%5.2f|\n",
+        return String.format("|%-30s|%-30s|%-30s|%4d|%-5s|%5.2f|\n",
                                                                 author, name, publishingCompany, yop, id, price);
     }
     public void showBookInformation() {
-        System.out.printf("|%-30s|%-30s|%-30s|%4d|%-8s|%5.2f|\n",
+        System.out.printf("|%-30s|%-30s|%-30s|%4d|%-5s|%5.2f|\n",
                                                                 author, name, publishingCompany, yop, id, price);
     }
 }
